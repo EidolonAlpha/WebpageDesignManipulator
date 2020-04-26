@@ -1,6 +1,6 @@
 # Webpage Design Manipulator
 
-Webpage Design Manipulator is a project to support the Webpage Design Manipulator extension through handleing the manipulation of sent CSS in order to make the create the CSS to inject into the Webpage to make the desiered changes. 
+Webpage Design Manipulator is a project to support the Webpage Design Manipulator extension through handling the manipulation of sent CSS in order to make the create the CSS to inject into the Webpage to make the desiered changes. 
 
 ## Prerequisites
 Installed latest Version of Java
