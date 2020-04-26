@@ -13,12 +13,14 @@ public class TagValueExtractor implements IExtractor<String, String> {
 		LOGGER.info("Extracting Tag Value");
 		int startPoint = 0;
 		String tagValue = null;
-		int tagStart = getTagStartPos(tagString, startPoint) + 1;
-		int tagEnd = getTagEndPos(tagString, startPoint + 1);
-		if (tagEnd > -1) {
-			tagValue = tagString.substring(tagStart, tagEnd).trim();
+		if (tagString != null) {
+			int tagStart = getTagStartPos(tagString, startPoint) + 1;
+			int tagEnd = getTagEndPos(tagString, startPoint + 1);
+			if (tagEnd > -1) {
+				tagValue = tagString.substring(tagStart, tagEnd).trim();
+			}
+			LOGGER.info("Found Tag Value : " + tagValue);
 		}
-		LOGGER.info("Found Tag Value : " + tagValue);
 		return tagValue;
 	}
 	

@@ -11,6 +11,13 @@ public class TagValueExtractorTest {
 	private TagValueExtractor tagValueExtractor = new TagValueExtractor();
 	
 	@Test
+	public void test_tag_extraction_null() {
+		String html = null;
+		String extractedTagValue = tagValueExtractor.extract(html);
+		assertEquals(null, extractedTagValue);
+	}
+	
+	@Test
 	public void test_tag_extraction_invalid_tag() {
 		String html = "dsgagdfgsdfg";
 		String extractedTagValue = tagValueExtractor.extract(html);

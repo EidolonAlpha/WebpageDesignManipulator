@@ -7,10 +7,25 @@ import java.util.List;
 import org.junit.Test;
 
 import jonathanHughes.htmlReader.webpage.components.css.ruleset.declaration.value.extractor.CssDeclarationValueExtractor;
+import jonathanHughes.htmlReader.webpage.components.css.ruleset.model.CssRuleSet;
 
 public class DeclarationValueTest {
 	
 	private CssDeclarationValueExtractor valueExtractor = new CssDeclarationValueExtractor();
+	
+	@Test
+	public void test_invalid_data() {
+		String cssString = "adsdoashuifoseodfjndsjnfdksbfsdnher";
+		List<String> values = valueExtractor.extract(cssString);
+		assertEquals(0, values.size());
+	}
+	
+	@Test
+	public void test_null_data() {
+		String cssString = null;
+		List<String> values = valueExtractor.extract(cssString);
+		assertEquals(0, values.size());
+	}
 	
 	@Test
 	public void test_extraction_of_css_decleration() {

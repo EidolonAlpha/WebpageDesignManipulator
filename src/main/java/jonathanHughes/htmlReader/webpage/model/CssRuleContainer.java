@@ -2,10 +2,14 @@ package jonathanHughes.htmlReader.webpage.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import jonathanHughes.htmlReader.webpage.components.css.ruleset.model.CssRuleSet;
+import jonathanHughes.htmlReader.webpage.service.WebpageService;
 
 public class CssRuleContainer {
+	
+	private final static Logger LOGGER = Logger.getLogger(CssRuleContainer.class.getName());
 	
 	private List<CssRuleSet> cssRuleSetList;
 	
@@ -14,6 +18,7 @@ public class CssRuleContainer {
 	}
 
 	public CssRuleSet getCssRuleSet(String selector) {
+		LOGGER.info("Searching for Ruleset with Selector : " + selector);
 		for (CssRuleSet cssRuleSet : cssRuleSetList) {
 			if (cssRuleSet.getSelector().length() > 0) {
 				String existingSelector = cssRuleSet.getSelector();

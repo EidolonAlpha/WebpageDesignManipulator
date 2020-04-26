@@ -23,10 +23,14 @@ public class CssExtractor implements IExtractor<String, List<CssRuleSet>> {
 
 	@Override
 	public List<CssRuleSet> extract(String cssString) {
+		List<CssRuleSet> cssRuleSetList = new ArrayList<CssRuleSet>();
+		if (cssString == null) {
+			return cssRuleSetList;
+		}
 		LOGGER.info("Extracting Css Ruleset from " + cssString);
 		cssString = cssString.replaceAll(" ", "");
 		CssRuleSet extractedRule;
-		List<CssRuleSet> cssRuleSetList = new ArrayList<CssRuleSet>();
+		
 		String[] cssList = reasignMediaRule(getCSSList(cssString));
 		for (String cssRulesetText : cssList) {
 			MediaQuery mediaRestrictionRule = null;	

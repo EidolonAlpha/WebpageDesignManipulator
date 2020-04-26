@@ -22,6 +22,13 @@ public class InternalCssExtractionTest {
 	}
 	
 	@Test
+	public void test_null_data() {
+		String internalCSS = null;
+		List<CssRuleSet> interalCSSList = internalCSSExtractor.extract(internalCSS);
+		assertEquals(0, interalCSSList.size());
+	}
+	
+	@Test
 	public void test_extraction_of__internal_css() {
 		String internalCSS = "body {  font-family: Arial, Helvetica, sans-serif;}<html></html>";
 		List<CssRuleSet> interalCSSList = internalCSSExtractor.extract(internalCSS);

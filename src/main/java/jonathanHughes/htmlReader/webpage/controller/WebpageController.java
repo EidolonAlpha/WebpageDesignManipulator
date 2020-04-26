@@ -33,6 +33,16 @@ public class WebpageController {
 		webpageAccess.release();
 		return new ResponseEntity<>(htmlExtraction, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/SaveHtml")
+	public ResponseEntity<Object> saveHtml(@RequestBody String htmlString) {
+		LOGGER.info("Recieved Request for HTML extraction");
+		webpageAccess.acquireUninterruptibly();
+		boolean htmlExtraction = webpageService.saveHtmlChanges(htmlString);
+		webpageAccess.release();
+		return new ResponseEntity<>(htmlExtraction, HttpStatus.OK);
+	}
+
 
 	@RequestMapping(value = "/CSSRules")
 	public ResponseEntity<Object> exractCSSRules(@RequestBody String cssString) throws IOException, InterruptedException {

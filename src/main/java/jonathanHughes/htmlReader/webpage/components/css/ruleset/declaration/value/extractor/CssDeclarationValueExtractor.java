@@ -12,12 +12,19 @@ public class CssDeclarationValueExtractor implements IExtractor<String, List<Str
 
 	@Override
 	public List<String> extract(String cssString) {
+		List<String> valueList = new ArrayList<String>();
+		if (cssString == null) {
+			return valueList;
+		}
 		int startIndex = cssString.indexOf(':') + 1;
 		int endIndex = cssString.indexOf(';');
+		if (startIndex == -1 || endIndex == -1) {
+			return valueList;
+		}
 		String valueString = cssString.substring(startIndex, endIndex).trim();
 		LOGGER.info("Extracted Value String : " + valueString);
 		String newValue = "";
-		List<String> valueList = new ArrayList<String>();
+		
 		boolean multiCommaValue = false;
 		for (String value : valueString.split("\\s*,\\s*")) {
 			newValue += value;

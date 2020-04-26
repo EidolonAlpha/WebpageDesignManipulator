@@ -33,8 +33,13 @@ public class WebpageService {
 	
 	public boolean extractHTML(String htmlString) {
 		LOGGER.info("Starting HTML extraction");
+		long startTime = System.nanoTime();
+		long endTime;
+		long duration;
 		webpage.setTagPairList(webpageBuilder.buildWebpageTagPairListFrom(htmlString.replace("\\", "")));
-		LOGGER.info("Finished HTML extraction");
+		endTime = System.nanoTime();
+		duration = (endTime - startTime)/ 1000000000;
+		LOGGER.info("Finished HTML extraction in :" + duration);
 		if (webpage.getHtmlTags().getTagPairList().size() > 0) {
 			htmlExtracted = true;
 			return htmlExtracted;
@@ -44,10 +49,15 @@ public class WebpageService {
 	
 	public boolean extractCSS(String cssString) throws JsonMappingException, JsonProcessingException {
 		LOGGER.info("Starting CSS extraction");
+		long startTime = System.nanoTime();
+		long endTime;
+		long duration;
 		CssReturnEntity cssList = mapper.readValue(cssString, new TypeReference<CssReturnEntity>(){});
 		webpage.setCSSRuleSetList(webpageBuilder.buildWebpageCSSRuleSetListFrom(cssList.getRules(), cssList.getLinks()));
 		webpage  = webpageBuilder.getWebpage();
-		LOGGER.info("Finished CSS extraction");
+		endTime = System.nanoTime();
+		duration = (endTime - startTime)/ 100000000;
+		LOGGER.info("Finished CSS extraction in :" + duration);
 		if (webpage.getCssRules().getCssRuleSetList() != null) {
 			return true;
 		}
@@ -84,6 +94,22 @@ public class WebpageService {
 			}
 		}
 		return changedCssRulesets;
+	}
+	
+	public boolean saveHtmlChanges(String htmlString) {
+		LOGGER.info("Starting HTML extraction");
+		long startTime = System.nanoTime();
+		long endTime;
+		long duration;
+		webpage.setTagPairList(webpageBuilder.buildWebpageTagPairListFrom(htmlString.replace("\\", "")));
+		endTime = System.nanoTime();
+		duration = (endTime - startTime)/ 1000000000;
+		LOGGER.info("Finished HTML extraction in :" + duration);
+		if (webpage.getHtmlTags().getTagPairList().size() > 0) {
+			htmlExtracted = true;
+			return htmlExtracted;
+		}
+		return false;
 	}
 
 	private List<EditedCssReturnEntity> makeCssChanges(List<CssRuleSet> changeCssRules) {
