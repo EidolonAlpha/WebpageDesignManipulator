@@ -40,6 +40,7 @@ public class CssDeclarationManipulator {
 			double widthDouble = Double.valueOf(newWidth.substring(0, newWidth.length() - 1));
 			String originalWidthString = ruleSet.getCssDelaration("width").getValues().get(0).replace("%", "");
 			originalWidthString = originalWidthString.replace("!important", "");
+			originalWidthString = originalWidthString.replace(";", "");
 			double originalWidth = Double.valueOf(originalWidthString);
 			double width = widthDouble + originalWidth;
 			return changeProperty(ruleSet, "width", Arrays.asList(String.valueOf(width) + "%"));
