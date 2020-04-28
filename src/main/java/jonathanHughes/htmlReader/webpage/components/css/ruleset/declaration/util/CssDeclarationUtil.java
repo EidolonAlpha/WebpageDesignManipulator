@@ -41,7 +41,7 @@ public class CssDeclarationUtil {
 			
 			widthString = widthString.replace(widthMetric, "");
 			
-			
+			widthString = widthString.replace(";", "");
 			widthString = widthString.replace("!important", "").strip();
 			width = Double.parseDouble(widthString);
 		}
