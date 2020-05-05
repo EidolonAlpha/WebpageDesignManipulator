@@ -9,14 +9,35 @@ Installed latest Version of Java
 An installer has been created to aid install.
 
 
-## Contributing to Extension Service API
-To contribute to Extension Service API, follow these steps:
+## Running the Extension Service API
+There is an exe file created to run this API.
 
-1. Fork this repository.
-2. Create a branch: `git checkout -b <branch_name>`.
-3. Make your changes and commit them: `git commit -m '<commit_message>'`
-4. Push to the original branch: `git push origin Webpage Design Manipulator/<location>`
-5. Create the pull request.
+## Server Details
+Port:8080 
+
+## HTML Extraction Endpoint 
+URL: /HtmlExtraction
+Parameters: None
+Body: FullHTMLString - This can be any valid HTML
+Output: Returns True or False on if HTML extraction was successful 
+Additional Details: Stores the extracted HTML objects for that session
+
+## CSS Extraction Endpoint 
+URL: /CSSRules
+Parameters: None
+Body: JSON String of {"rules":  [<cssRuleset>,<cssRuleset>], "links":[externalStyleSheetLink]}
+Body Example: {"rules":["* { box-sizing: border-box; }","body { font-family: Arial, Helvetica, sans-serif; }","header { background-color: rgb(102, 102, 102);],"links":[]}
+Output: Returns True or False on if CSS extraction was successful 
+Additional Details: Stores the extracted CSS Rulset objects for that session
+
+## Save CSS Changes Endpoint
+URL: /SaveCssChanges
+Parameters: None
+Body: JSON String of {"rules":  [<cssRuleset>,<cssRuleset>], "links":[externalStyleSheetLink]}
+Body Example: {"rules":["* { box-sizing: border-box; }","body { font-family: Arial, Helvetica, sans-serif; }","header { background-color: rgb(102, 102, 102);],"links":[]}
+Output: Returns True or False on if CSS Save was successful 
+Additional Details: The must be HTML and CSS previously extracted in the session
+
 
 ## Contact
 Email: jhughes61@qub.ac.uk
